@@ -1,0 +1,13 @@
+---
+oss:
+  title: Open source, open process.
+  description: |
+    Help shape the future of the @followspec.org specification. 
+  links:
+    - label: Join the RFC
+      href: https://github.com/socialspec/followspec.org
+      primary: true
+  github:
+    href: https://github.com/socialspec/followspec.org
+    repo: socialspec/followspec.org
+    stars: 1

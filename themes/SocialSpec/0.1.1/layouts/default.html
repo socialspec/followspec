@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta ht-include='fragments/head'>
+        <meta name='layout:name' content='default'>
+        <style ht-pipe='from "style.component" as css' id='components'></style>
+        <style id='layout'>
+            .default-hero {
+                border-bottom: 1px solid var(--color-line);
+                text-align: center;
+            }
+
+            .default-hero>content-container {
+                display: grid;
+                justify-items: center;
+                gap: 18px;
+                padding-block: 60px 64px;
+            }
+
+            .default-hero h1 {
+                max-width: 920px;
+                overflow-wrap: anywhere;
+            }
+
+            .default-content {
+                box-sizing: border-box;
+                width: 100%;
+                margin: 0;
+                padding: 56px var(--container-gutter) 80px;
+            }
+
+            @media (max-width: 720px) {
+                .default-hero>content-container {
+                    padding-block: 44px 48px;
+                }
+
+                .default-content {
+                    padding-block: 40px 56px;
+                }
+
+            }
+        </style>
+    </head>
+    <body class='default-page'>
+        <header data-color-scheme='cream'>
+            <nav ht-include='fragments/nav'></nav>
+            <section class='default-hero'>
+                <content-container>
+                    <p class='eyebrow'>
+                        socialspec.org
+                    </p>
+                    <h1 ht-apply>
+                        ${ page.title }
+                    </h1>
+                    <p ht-apply>
+                        ${ page.description }
+                    </p>
+                </content-container>
+            </section>
+        </header>
+        <main>
+            <article ht-apply class='default-content' data-color-scheme='light'>
+                ${ markdown(page.content) }
+            </article>
+            <section ht-include='fragments/open-source' data-color-scheme='light'></section>
+        </main>
+        <footer ht-include='fragments/footer'></footer>
+    </body>
+</html>

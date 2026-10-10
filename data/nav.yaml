@@ -1,0 +1,59 @@
+main:
+  - label: Specifications
+    href: https://socialspec.org/
+  - label: Blog
+    href: https://socialspec.org/blog
+  - label: GitHub
+    href: https://github.com/socialspec/followspec.org
+    icon: github
+    cta: true
+
+mobile:
+  - label: Specifications
+    href: https://socialspec.org/
+  - label: Blog
+    href: https://socialspec.org/blog
+  - label: GitHub
+    href: https://github.com/socialspec/followspec.org
+    icon: github
+    cta: true
+
+footer:
+  title:
+    href: https://socialspec.org
+  description: |
+    FollowSpec is part of the SocialSpec portfolio of specifications for social engagement on the world wide web.
+    Built on open standards.
+  groups:
+    - label: Specifications
+      markers: false
+      links:
+        - label: socialspec.org
+          href: https://socialspec.org
+          color: none
+        - label: aboutspec.org
+          href: https://aboutspec.org
+          color: none
+        - label: contactspec.org
+          href: https://contactspec.org
+          color: none
+    - label: Resources
+      markers: false
+      links:
+        - label: Home
+          href: https://socialspec.org/
+          color: none
+        - label: Contact
+          href: https://socialspec.org/.well-known/contact.vcf
+        - label: Blog
+          href: https://socialspec.org/blog
+          color: none
+        - label: GitHub
+          href: https://github.com/socialspec
+          color: none
+        - label: info@socialspec.org
+          href: mailto:info@socialspec.org
+          color: none
+  meta:
+    message: FollowSpec.org &copy; 2026
+    path: /.well-known/following.opml

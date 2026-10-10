@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta ht-include='fragments/head'>
+    <!--Layout styles-->
+    <style ht-pipe='from "style.component" as css' id='components'></style>
+    <style id='layout'>
+        .specifications {
+            max-width: none;
+            border-top: 1px solid var(--color-line);
+            border-bottom: 1px solid var(--color-line);
+            background: var(--color-white);
+        }
+
+        .specifications>div {
+            width: var(--container-width);
+            margin-inline: auto;
+        }
+
+        .specifications>div:first-child {
+            display: grid;
+            gap: 12px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        a.spec-card {
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 15rem;
+            gap: var(--gutter-2x);
+            padding: var(--gutter-4x);
+            border-radius: 2rem;
+            background: var(--color-purple);
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        a.spec-card > header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        a.spec-card header h4 { margin: 0; }
+
+        a.spec-card code {
+            color: color-mix(in srgb, currentColor 80%, transparent);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        a.spec-card p { margin: 0; }
+
+        a.spec-card .spec-status {
+            flex: none;
+            padding: .45em .85em;
+            border-radius: 999px;
+            background: color-mix(in srgb, currentColor 15%, transparent);
+            color: inherit;
+            font-size: .9rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        a.spec-card .spec-link {
+            align-self: end;
+            color: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-thickness: .12em;
+            text-underline-offset: .25em;
+        }
+
+        a.spec-card[data-color="green"] {
+            background: var(--color-green);
+        }
+
+        a.spec-card[data-color="yellow"] {
+            background: var(--color-yellow);
+            color: var(--color-ink);
+        }
+
+        a.spec-card:hover {
+            color: var(--color-white);
+        }
+
+        a.spec-card[data-color="yellow"]:hover {
+            color: var(--color-ink);
+        }
+
+        a.spec-card:focus-visible {
+            outline: .2rem solid var(--color-ink);
+            outline-offset: .25rem;
+        }
+
+        @media screen and (min-width: 721px) and (max-width: 1067px) {
+            .spec-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            a.spec-card:last-child:nth-child(odd) {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .spec-grid {
+                grid-template-columns: 1fr;
+            }
+
+            a.spec-card {
+                /* grid-template-rows: auto auto 1fr auto; */
+            }
+
+            a.spec-card :is(h4, code) {
+                /* white-space: normal; */
+                /* overflow-wrap: anywhere; */
+            }
+        }
+
+    </style>
+    <!--Layout scripts-->
+    <script src='/js/social-widget.js' defer></script>
+    <script src='/js/hero.js' defer></script>
+</head>
+
+<body>
+    <header ht-include='fragments/hero'></header>
+    <main>
+        <section ht-with='${ page.specifications } as specifications' id='specs' class='specifications'>
+            <div>
+                <p ht-apply class='eyebrow'>
+                    ${ specifications.eyebrow }
+                </p>
+                <h2 ht-apply>
+                    ${ specifications.title }
+                </h2>
+                <p ht-apply>
+                    ${ specifications.description }
+                </p>
+            </div>
+            <div class='spec-grid'>
+                <a ht-each='spec in ${ page.specs }' ht-apply class='spec-card' data-color='${ spec.color }' href='${ spec.href }'>
+                    <header>
+                        <h4 ht-apply>
+                            ${ spec.name }
+                        </h4>
+                        <span class='spec-status' ht-apply>
+                            ${ spec.status }
+                        </span>
+                    </header>
+                    <code ht-apply>
+                        ${ spec.path }
+                    </code>
+                    <p ht-apply>
+                        ${ spec.description }
+                    </p>
+                    <span class='spec-link'>
+                        Learn more →
+                    </span>
+                </a>
+            </div>
+        </section>
+        <section ht-include='fragments/latest-news'></section>
+        <section ht-include='fragments/open-source' data-color-scheme='smoke'></section>
+    </main>
+    <footer ht-include='fragments/footer'></footer>
+</body>
+
+</html>

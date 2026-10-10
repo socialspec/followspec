@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta ht-include='fragments/head'>
+        <meta name='layout:name' content='tag'>
+        <style ht-pipe='from "style.component" as css' id='components'></style>
+        <style id='layout'>
+            main > .tag-index { width: min(820px, var(--container-width)); margin: 0 auto; padding-block: 64px 80px; }
+            .tag-index { display: grid; gap: 28px; }
+            .tag-index header { display: grid; gap: 12px; }
+            .tag-index menu { display: grid; margin: 0; padding: 0; list-style: none; }
+            .tag-index li { border-top: 1px solid var(--color-line); }
+            .tag-index li:last-child { border-bottom: 1px solid var(--color-line); }
+            .tag-index a { display: block; padding-block: 24px; color: var(--color-ink); font: 700 clamp(1.5rem, 4vw, 2rem)/1.1 var(--font-condensed); text-decoration: none; }
+            .tag-index a:hover { color: var(--color-body); }
+        </style>
+    </head>
+    <body class='tag-page'>
+        <header>
+            <nav ht-include='fragments/nav'></nav>
+        </header>
+        <main>
+            <section class='tag-index'>
+                <header>
+                    <p class='eyebrow'>Posts tagged</p>
+                    <h1 ht-apply>${ page.title }</h1>
+                </header>
+                <menu>
+                    <li ht-each='post in ${ page.feeds.tag.items }'>
+                        <a ht-apply href='${ post.path }'>${ post.title }</a>
+                    </li>
+                </menu>
+            </section>
+        </main>
+        <footer ht-include='fragments/footer'></footer>
+    </body>
+</html>

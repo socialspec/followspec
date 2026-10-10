@@ -1,0 +1,175 @@
+---
+created_at: 2026-10-07T12:00:00-07:00
+layout: landing
+title: FollowSpec
+description: |
+  A proposal for sharing the feeds a site follows at /.well-known/following.opml.
+hero:
+  eyebrow:
+    label: Request for comments
+    href: https://github.com/socialspec/followspec.org
+  title: The open web's hidden social graph
+  description: |
+    A proposal for sharing recommended feeds and podcasts using open standards. 
+    Help unlock the next generation of social experiences.
+  http:
+    request:
+      method: GET
+      url: /.well-known/following.opml
+    response:
+      version: HTTP/1.1
+      status: 200 OK
+      headers:
+        - name: Content-Type
+          value: text/x-opml; charset=utf-8
+        - name: Access-Control-Allow-Origin
+          value: "*"
+      body: |
+        &lt;opml version="2.0"&gt;
+          &lt;head&gt;
+            &lt;title&gt;Jordan Doe's followed feeds&lt;/title&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;outline text="Anil Dash" xmlUrl="https://www.anildash.com/feed.xml" /&gt;
+            &lt;outline text="Caleb Hailey" xmlUrl="https://calebhailey.com/feeds/main.xml" /&gt;
+            &lt;outline text="Daring Fireball" xmlUrl="https://daringfireball.net/feeds/main" /&gt;
+          &lt;/body&gt;
+        &lt;/opml&gt;
+
+publishers:
+  heading: For publishers
+  lede: From personal websites to CMS platforms
+  description: |
+    Share followed feeds to help your community make new connections.
+
+    - Create an [OPML subscription list](https://opml.org/spec2.opml#subscriptionLists)
+    - Publish it at `/.well-known/following.opml`
+    - Allow [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) requests
+
+    That's it. That's the entire spec (so far).
+  cta:
+    label: Join the RFC &rightarrow;
+    href: https://github.com/socialspec/followspec.org
+
+subscribers:
+  heading: For subscribers
+  lede: From RSS feed readers to next-gen social experiences
+  description: |
+    Help users discover recommended feeds from websites they trust.
+
+    - Discovery is a single `HTTP GET` request
+    - Parse responses using standard XML libraries
+    - Display feeds in "Following" tabs
+
+    That's it. That's the entire spec (so far).
+  cta:
+    label: Join the RFC &rightarrow;
+    href: https://github.com/socialspec/followspec.org
+  http:
+    request:
+      label: Request
+      badge: Discovery
+      method: GET
+      url: https://jordandoe.com/.well-known/following.opml
+      headers:
+        - name: Host
+          value: jordandoe.com
+        - name: Accept
+          value: text/x-opml
+        - name: If-None-Match
+          value: '"5eb63bbbe01eeed093cb22bb8f5acdc3"'
+    response:
+      label: Response
+      badge: Verification
+      version: HTTP/1.1
+      status: 200 OK
+      checks:
+        - label: TLS certificate for
+          value: "jordandoe.com: valid"
+        - label: "Content-Type:"
+          value: text/x-opml; charset=utf-8
+sitemap:
+  paths:
+    - /index.html
+    - /.well-known/following.opml
+profile:
+  active_spec: following
+  name: Jordan Doe
+  handle: "@jordandoe.com"
+  summary: Eager explorer, eternal optimist, passionate about taking the long way home.
+  avatar: "💁🏻‍♀️"
+  default_tab: following
+  tabs:
+    - id: posts
+      label: Posts
+    - id: following
+      label: Following
+  posts:
+    - date: Sep 30, 2026
+      title: I published my following list
+      blurb: Three feeds I think everyone should read.
+    - date: Sep 12, 2026
+      title: First tomatoes of the year
+      blurb: Late, small, and absolutely worth it.
+    - date: Aug 28, 2026
+      title: Small software, on purpose
+      blurb: Notes from a year of building less.
+  following:
+    - name: Anil Dash
+      host: anildash.com
+      following: true
+      favicon_url: https://www.anildash.com/favicon.svg
+    - name: Caleb Hailey
+      host: calebhailey.com
+      following: false
+      favicon_url: https://calebhailey.com/favicon.jpeg
+    - name: Daring Fireball
+      host: daringfireball.net
+      following: true
+      favicon_url: https://daringfireball.net/graphics/apple-touch-icon.png
+    - name: Eater
+      host: eater.com
+      following: false
+      favicon_url: https://www.eater.com/static-assets/icons/apple-touch-icon.png
+    - name: HyperTexting
+      host: hypertexting.com
+      following: false
+      favicon_url: https://hypertexting.com/img/apple-touch-icon.png
+    - name: Kottke
+      host: kottke.org
+      following: true
+      favicon_url: https://kottke.org/images/2024/icons/256x256.png
+    - name: Molly White
+      host: mollywhite.net
+      following: true
+      favicon_url: https://www.mollywhite.net/assets/images/icons/apple-touch-icon.png
+    - name: New York Times
+      host: nytimes.com
+      following: false
+      favicon_url: https://static01.nyt.com/vi-assets/static-assets/assets/apple-touch-icon-BTg5GMmB.png
+    - name: Platformer
+      host: platformer.news
+      following: true
+      favicon_url: https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w256h256/2024/05/Logomark_Blue_800px.png
+    - name: Dave Winer
+      host: scripting.com
+      following: true
+      favicon_url: http://scripting.com/favicon.ico
+    - name: Spyglass
+      host: spyglass.org
+      following: false
+      favicon_url: https://storage.ghost.io/c/af/ca/afcaa655-46e2-45b8-889a-2881de5cce69/content/images/2026/07/Spyglass-Rings-----Multi.png
+    - name: The Verge
+      host: theverge.com
+      following: false
+      favicon_url: https://www.theverge.com/static-assets/icons/apple-touch-icon.png
+    - name: This American Life
+      host: thisamericanlife.org
+      following: true
+      # favicon_url: https://www.thisamericanlife.org/sites/all/themes/thislife/favicons/apple-touch-icon.png?v=2
+  about:
+    heading: Jordan Doe
+    body: Eager explorer, eternal optimist, passionate about taking the long way home.
+    links: []
+  contact: []
+---

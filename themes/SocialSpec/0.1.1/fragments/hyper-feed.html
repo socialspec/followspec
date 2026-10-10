@@ -1,0 +1,102 @@
+<hyper-feed id='blog-feed' controls='blog-filters'>
+    <style class='component'>
+        hyper-feed#blog-feed {
+            display: grid;
+        }
+
+        hyper-feed#blog-feed .blog-post {
+            display: grid;
+            gap: 10px;
+            padding-block: 28px;
+            border-top: 1px solid var(--color-line);
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+
+        hyper-feed#blog-feed .blog-post:hover {
+            color: var(--color-body);
+        }
+
+        hyper-feed#blog-feed .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 14px;
+        }
+
+        hyper-feed#blog-feed .post-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--color-slate);
+            color: var(--color-white);
+            font-size: .75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        hyper-feed#blog-feed .tag-marker {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        hyper-feed#blog-feed .post-tag[data-color="purple"] {
+            background: var(--color-purple-soft);
+            color: var(--color-purple-ink);
+        }
+
+        hyper-feed#blog-feed .post-tag[data-color="green"] {
+            background: var(--color-green-soft);
+            color: var(--color-green-ink);
+        }
+
+        hyper-feed#blog-feed .post-tag[data-color="yellow"] {
+            background: var(--color-yellow-soft);
+            color: var(--color-yellow-ink);
+        }
+
+        hyper-feed#blog-feed time {
+            color: var(--color-slate);
+            font: 500 .8125rem var(--font-mono);
+        }
+
+        hyper-feed#blog-feed .blog-post h2 {
+            font-size: clamp(1.9rem, 4vw, 2.125rem);
+        }
+
+        hyper-feed#blog-feed .blog-post p {
+            color: var(--color-body);
+            line-height: 1.6;
+        }
+
+        hyper-feed#blog-feed .blog-post strong {
+            font-size: .9375rem;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+    </style>
+    <a ht-each='post in ${ page.feeds.blog.items }' ht-apply class='blog-post' href='${ post.path }' data-feed-item='true'>
+        <span class='post-meta'>
+            <span ht-each='tag in ${ post.tags }' ht-apply class='post-tag' data-tag='${ tag }' data-color='${ post.color }'>
+                <span class='tag-marker' aria-hidden='true'></span>
+                ${ tag }
+            </span>
+            <time ht-apply datetime='${ post.created_at }'>
+                ${ post.date } · ${ reading_time(post.wordcount) }
+            </time>
+        </span>
+        <h2 ht-apply>
+            ${ post.title }
+        </h2>
+        <p ht-apply>
+            ${ post.description }
+        </p>
+        <strong>
+            Read the post →
+        </strong>
+    </a>
+</hyper-feed>

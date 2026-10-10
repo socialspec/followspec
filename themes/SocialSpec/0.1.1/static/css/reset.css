@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+a {
+  font-size: inherit;
+}
+
+form :where(input, input:focus) {
+  border-style: solid;
+  outline: none;
+  box-shadow: none;
+  --webkit-box-shadow: none;
+}
+
+form :where(input, button, textarea, select) {
+  font: inherit;
+}
+
+form :where(button, input[type='submit'], input[type='reset']) {
+  align-items: unset;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+svg {
+  fill: currentColor;
+}
+
+img {
+  max-width: 100%;
+}

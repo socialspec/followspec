@@ -1,0 +1,54 @@
+---
+base_url: https://followspec.org
+title: FollowSpec
+description: A proposal for sharing the feeds a site follows at /.well-known/following.opml.
+brand: followspec
+cover: /img/socialspec-following-cover.png
+
+byline:
+    name: FollowSpec
+    favicon: /img/socialspec.png
+    email: contact@socialspec.org
+    href: /
+
+links:
+  - rel: icon
+    href: /img/socialspec.png?v=1
+    type: image/png
+  - rel: me
+    href: https://github.com/socialspec
+  - rel: me
+    href: https://github.com/socialspec/followspec.org
+  - rel: following
+    href: /.well-known/following.opml
+
+config:
+    preview:
+        id: followspec-local
+        bind: localhost
+        port: 4174
+    themes_dir: themes
+    theme: themes/SocialSpec/0.1.1/theme.json
+    status_layout: builtin/status.html
+    status_redirect: /
+    tidy_mode: true
+
+providers:
+    default:
+        kind: s3
+        endpoint: https://5a8b6c901ff20ee02892cf121b1ead54.r2.cloudflarestorage.com
+        base_url: https://followspec.org
+        config:
+            bucket: followspec-production
+            conditional_mode: etag
+        secrets:
+          - name: access_key_id
+            key: AWS_ACCESS_KEY_ID
+          - name: secret_access_key
+            key: AWS_SECRET_ACCESS_KEY
+
+environments:
+    default: [default]
+
+sync:
+    remote: https://followspec.org

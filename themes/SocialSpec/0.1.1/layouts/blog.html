@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta ht-include='fragments/head'>
+    <meta name='layout:name' content='blog'>
+    <style ht-pipe='from "style.component" as css' id='components'></style>
+    <script src='/js/hyper-feed.js' defer></script>
+    <style id='layout'>
+        main>.blog-index {
+            width: min(820px, var(--container-width));
+            margin: 0 auto;
+        }
+
+        .blog-index {
+            display: grid;
+            gap: 28px;
+        }
+
+        .blog-index>header {
+            display: grid;
+            gap: 12px;
+        }
+
+        .blog-index>header p {
+            color: var(--color-body);
+            line-height: 1.6;
+        }
+
+        .blog-index>menu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px 24px;
+        }
+
+        .blog-index .blog-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .blog-index .blog-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 40px;
+            padding-inline: 14px;
+            border: 1.5px solid var(--color-line);
+            border-radius: 999px;
+            background: var(--color-white);
+            color: var(--color-ink);
+            font-size: .875rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .blog-index .blog-filter[data-active="true"] {
+            border-color: var(--color-ink);
+            background: var(--color-ink);
+            color: var(--color-white);
+        }
+
+        .blog-index .filter-marker {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-slate);
+        }
+
+        .blog-index .blog-filter[data-color="purple"] .filter-marker {
+            background: var(--color-purple);
+        }
+
+        .blog-index .blog-filter[data-color="green"] .filter-marker {
+            background: var(--color-green);
+        }
+
+        .blog-index .blog-filter[data-color="yellow"] .filter-marker {
+            background: var(--color-yellow);
+        }
+
+        .blog-index .blog-filter[data-active="true"] .filter-marker {
+            display: none;
+        }
+
+        .blog-index .rss-link {
+            display: inline-flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            min-height: 40px;
+            color: var(--color-orange-ink);
+            font-size: .9375rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .blog-index .rss-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 720px) {
+            .blog-index>nav {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class='blog-page'>
+    <header>
+        <nav ht-include='fragments/nav'></nav>
+    </header>
+    <main>
+        <section ht-with='${ page.blog } as blog' class='blog-index'>
+            <header>
+                <h1 ht-apply>
+                    ${ page.title }
+                </h1>
+                <p ht-apply>
+                    ${ page.description }
+                </p>
+            </header>
+            <menu class='blog-filters' id='blog-filters' aria-label='Post tags'>
+                <li ht-each='filter in ${ blog.filters }' class='blog-filter-item'>
+                    <a ht-apply class='blog-filter' href='${ filter.href }' data-tag='${ filter.tag }'
+                        data-active='${ filter.active }' data-color='${ filter.color }'>
+                        <span class='filter-marker' aria-hidden='true'></span>
+                        <span ht-apply>
+                            ${ filter.label }
+                        </span>
+                    </a>
+                </li>
+                <a ht-apply class='rss-link' href='${ blog.feed_href }'>
+                    <svg ht-include='fragments/icons/rss-solid-full.svg' aria-hidden='true'></svg>
+                    <span ht-apply>
+                        ${ blog.feed_label }
+                    </span>
+                </a>
+            </menu>
+            <hyper-feed ht-include='fragments/hyper-feed'></hyper-feed>
+        </section>
+        <section ht-include='fragments/open-source' data-color-scheme='smoke'></section>
+    </main>
+    <footer ht-include='fragments/footer'></footer>
+</body>
+
+</html>

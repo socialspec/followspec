@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Social Spec
+NICKNAME:@socialspec.org
+N:;;;;
+htcontact1.EMAIL;TYPE=PREF:info@socialspec.org
+htcontact1.X-ABLabel:Info
+END:VCARD

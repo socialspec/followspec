@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta ht-include='fragments/head'>
+        <!--Layout styles-->
+        <style ht-pipe='from "style.component" as css' id='components'></style>
+        <style id='layout'>
+            body {
+                background: #fdfbf6;
+                color: #171c2b;
+            }
+
+            body main {
+                overflow: hidden;
+            }
+
+            body main > section {
+                border-top: 1px solid #e2ddd1;
+            }
+
+            body main > section>div {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 40px 64px;
+                width: var(--container-width);
+                margin: 0 auto;
+            }
+
+            body main > section article {
+                display: flex;
+                flex: 1 1 420px;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            body main > section article h2 {
+                margin: 0;
+                font-size: 44px;
+                line-height: 1.04;
+            }
+
+            body main > section article p {
+                margin: 0;
+                color: #3d4453;
+                line-height: 1.65;
+            }
+
+            body main > section article p:first-of-type {
+                color: #171c2b;
+                font-weight: 500;
+                line-height: 1.55;
+            }
+
+            body main > section article ul {
+                display: grid;
+                gap: 10px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            body main > section article li {
+                position: relative;
+                padding-inline-start: 1.5rem;
+                line-height: 1.5;
+            }
+
+            body main > section article li::before {
+                position: absolute;
+                inset-inline-start: 0;
+                color: #7a3e9d;
+                content: "✓";
+                font-weight: 700;
+            }
+
+            body main > section article>a {
+                align-self: flex-start;
+                min-height: 44px;
+                font-weight: 600;
+            }
+
+            body .landing-illustration {
+                display: grid;
+                flex: 1 1 440px;
+                gap: 12px;
+                min-width: 0;
+            }
+
+            body .subscriber-illustration {
+                grid-template-columns: 1fr;
+            }
+
+            body .subscriber-illustration request-response {
+                width: 100%;
+            }
+
+            @media (max-width: 720px) {
+                body main > section article h2 {
+                    font-size: 38px;
+                }
+            }
+        </style>
+        <script src='/js/social-widget.js' defer></script>
+        <script src='/js/rotating-text.js' defer></script>
+    </head>
+    <body ht-apply data-brand='${ site.brand, theme.data.brand.id }'>
+        <header ht-include='fragments/hero-landing'></header>
+        <main>
+            <section ht-with='${ page.publishers } as publishers' data-brand='${ site.brand, theme.data.brand.id }' data-color-scheme='spec' id='publishers'>
+                <div>
+                    <article ht-apply>
+                        <h2 ht-apply>
+                            ${ publishers.heading }
+                        </h2>
+                        <p ht-apply>
+                            ${ publishers.lede }
+                        </p>
+                        ${ markdown(publishers.description) }
+                        <a ht-apply href='${ publishers.cta.href }'>
+                            ${ publishers.cta.label }
+                        </a>
+                    </article>
+                    <div class='landing-illustration'>
+                        <sitemap ht-include='fragments/sitemap' ht-with='${ page.sitemap } as sitemap'></sitemap>
+                    </div>
+                </div>
+            </section>
+            <section ht-with='${ page.subscribers } as subscribers' data-color-scheme='snow' id='subscribers'>
+                <div>
+                    <div class='landing-illustration subscriber-illustration'>
+                        <request-response ht-include='fragments/request-response' ht-with='${ subscribers.http } as http'></request-response>
+                    </div>
+                    <article ht-apply>
+                        <h2 ht-apply>
+                            ${ subscribers.heading }
+                        </h2>
+                        <p ht-apply>
+                            ${ subscribers.lede }
+                        </p>
+                        ${ markdown(subscribers.description) }
+                        <a ht-apply href='${ subscribers.cta.href }'>
+                            ${ subscribers.cta.label }
+                        </a>
+                    </article>
+                </div>
+            </section>
+            <section ht-include='fragments/open-source' data-color-scheme='smoke'></section>
+        </main>
+        <footer ht-include='fragments/footer'></footer>
+    </body>
+</html>

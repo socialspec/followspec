@@ -1,0 +1,53 @@
+<logo-horizontal>
+    <style class='component'>
+        logo-horizontal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        logo-horizontal > svg:first-of-type {
+            width: 44px;
+            height: 44px;
+            flex: none;
+        }
+
+        logo-horizontal > svg + svg {
+            width: auto;
+            height: 44px;
+            flex: none;
+        }
+
+        logo-horizontal > svg:first-of-type #Doorway,
+        logo-horizontal > svg + svg #Social,
+        logo-horizontal > svg + svg #Follow,
+        logo-horizontal > svg + svg #About,
+        logo-horizontal > svg + svg #Contact,
+        logo-horizontal > svg + svg #Spec {
+            fill: var(--color-ink);
+        }
+
+        logo-horizontal > svg + svg #Spec {
+            fill: color-mix(in srgb, var(--color-ink) 15%, transparent);
+            stroke: var(--color-ink);
+        }
+
+        [data-color-scheme="dark"] logo-horizontal > svg.logomark #Doorway {
+            fill: var(--color-cream);
+        }
+
+        [data-color-scheme="dark"] logo-horizontal > svg.wordmark :is(#Social, #Follow, #About, #Contact) {
+            fill: var(--color-cream);
+        }
+
+        [data-color-scheme="dark"] logo-horizontal > svg.wordmark #Spec {
+            fill: color-mix(in srgb, var(--color-cream) 15%, transparent);
+            stroke: var(--color-cream);
+        }
+    </style>
+    <svg ht-include='fragments/icons/socialspec.svg' class='logomark' aria-hidden='true'></svg>
+    <svg ht-include='fragments/icons/socialspec-wordmark.svg' ht-if='${ brand } == "socialspec"' class='wordmark' aria-hidden='true'></svg>
+    <svg ht-include='fragments/icons/followspec-wordmark.svg' ht-if='${ brand } == "followspec"' class='wordmark' aria-hidden='true'></svg>
+    <svg ht-include='fragments/icons/aboutspec-wordmark.svg' ht-if='${ brand } == "aboutspec"' class='wordmark' aria-hidden='true'></svg>
+    <svg ht-include='fragments/icons/contactspec-wordmark.svg' ht-if='${ brand } == "contactspec"' class='wordmark' aria-hidden='true'></svg>
+</logo-horizontal>

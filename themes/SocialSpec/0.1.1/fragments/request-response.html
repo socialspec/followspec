@@ -1,0 +1,145 @@
+<request-response ht-with='${ http } as http'>
+    <style class='component'>
+        request-response {
+            display: block;
+            overflow: hidden;
+            border-radius: 28px;
+            background: var(--color-dark, #171c2b);
+            color: var(--color-light, #fff);
+            text-align: left;
+        }
+
+        request-response > section {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1rem;
+            padding: var(--gutter-3x);
+        }
+
+        request-response>section+section {
+            border-top: 1px solid #2c3345;
+        }
+
+        request-response header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        request-response header>span {
+            color: #9ca5ba;
+            font: 500 var(--font-size-mono-label)/1 var(--font-mono);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        request-response header b {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .5rem 1rem;
+            border-radius: 999px;
+            background: #8fe0b9;
+            color: #171c2b;
+            font: 500 var(--font-size-mono-label)/1 var(--font-mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        request-response header b::before {
+            content: "✓";
+            font-family: system-ui, sans-serif;
+            font-weight: 800;
+        }
+
+        request-response > section > code {
+            display: block;
+            inline-size: 100%;
+            min-inline-size: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            overscroll-behavior-inline: contain;
+            font: 400 var(--font-size-mono)/1.6 var(--font-mono);
+        }
+
+        request-response .request code {
+            color: #c1c8d8;
+            white-space: nowrap;
+        }
+
+        request-response .request code strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        request-response .request code span,
+        request-response .response code span { display: block; }
+
+        request-response .response code {
+            color: #fff;
+            white-space: nowrap;
+        }
+        request-response .response code strong {
+            color: #8fe0b9;
+            font-weight: 600;
+        }
+
+        @media (max-width: 620px) {
+            request-response {
+                border-radius: 20px;
+            }
+
+            request-response>section {
+                gap: .75rem;
+            }
+
+            request-response header b {
+                padding: .4375rem .75rem;
+            }
+        }
+    </style>
+    <section class='request'>
+        <header>
+            <span ht-apply>
+                ${ http.request.label }
+            </span>
+            <b ht-apply ht-if='${ http.request.badge }'>
+                ${ http.request.badge }
+            </b>
+        </header>
+        <code>
+            <span ht-apply>
+                ${ http.request.method }
+                <strong ht-apply>
+                    ${ http.request.url }
+                </strong>
+            </span>
+            <span ht-each='header in ${ http.request.headers }'>
+                ${ header.name }: ${ header.value }
+            </span>
+        </code>
+    </section>
+    <section class='response'>
+        <header>
+            <span ht-apply>
+                ${ http.response.label }
+            </span>
+            <b ht-apply ht-if='${ http.response.badge }'>
+                ${ http.response.badge }
+            </b>
+        </header>
+        <code>
+            <span ht-apply>
+                ${ http.response.version }
+                <strong ht-apply>
+                    ${ http.response.status }
+                </strong>
+            </span>
+            <span ht-each='check in ${ http.response.checks }'>
+                ${ check.label } <strong ht-apply>${ check.value }</strong>
+            </span>
+        </code>
+    </section>
+</request-response>

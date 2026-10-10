@@ -1,0 +1,11 @@
+{
+  "name": "SocialSpec",
+  "description": "The socialspec.org portfolio theme.",
+  "version": "0.1.1",
+  "config": {
+    "layouts_dir": "layouts",
+    "fragments_dir": "fragments",
+    "plugins_dir": "plugins",
+    "static_dir": "static"
+  }
+}

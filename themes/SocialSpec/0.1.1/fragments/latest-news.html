@@ -1,0 +1,88 @@
+<section ht-with='${ page.blog } as blog' id='blog' class='blog-preview'>
+    <style class='component'>
+        section#blog.blog-preview {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        section#blog.blog-preview > div:first-of-type {
+            display: grid;
+            align-content: start;
+            gap: 14px;
+        }
+
+        section#blog.blog-preview .button-rss {
+            width: max-content;
+            background: #fcebdd;
+            color: #8a3d0b;
+        }
+
+        section#blog.blog-preview .button-rss svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        section#blog.blog-preview .blog-index-link { font-weight: 700; }
+
+        section#blog.blog-preview .post-list { display: grid; }
+        section#blog.blog-preview .post-list a {
+            display: grid;
+            gap: 6px;
+            padding: 20px 0;
+            border-top: 1px solid var(--color-line);
+            text-decoration: none;
+        }
+
+        section#blog.blog-preview .post-list time {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--color-slate);
+            font: 500 .72rem var(--font-mono);
+        }
+
+        section#blog.blog-preview .post-list strong {
+            font: 700 1.3rem var(--font-condensed);
+            color: var(--color-ink);
+        }
+
+        section#blog.blog-preview .post-list span { line-height: 1.5; }
+
+        @media (max-width: 720px) {
+            section#blog.blog-preview { grid-template-columns: 1fr; gap: 28px; }
+        }
+    </style>
+    <div>
+        <h2 ht-apply>
+            ${ blog.title }
+        </h2>
+        <p ht-apply>
+            ${ blog.description }
+        </p>
+        <a ht-apply class='button button-rss' href='${ blog.feed_href }'>
+            <svg ht-include='fragments/icons/rss-solid-full.svg' aria-hidden='true'></svg>
+            <span ht-apply>
+                ${ blog.feed_label }
+            </span>
+        </a>
+        <a ht-apply class='blog-index-link' href='${ blog.index_href }'>
+            ${ blog.index_label }
+        </a>
+    </div>
+    <div class='post-list'>
+        <a ht-each='post in ${ page.feeds.blog.items }' ht-apply ht-limit='4' href='${ post.path }'>
+            <time ht-apply datetime='${ post.created_at }'>
+                ${ post.date }
+            </time>
+            <strong ht-apply>
+                ${ post.title }
+            </strong>
+            <span ht-apply>
+                ${ post.description }
+            </span>
+        </a>
+    </div>
+</section>

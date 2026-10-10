@@ -1,0 +1,171 @@
+<!--`page.profile.files` supplies the interactive file-to-tab controls.-->
+<spec-buttons ht-with='${ page.profile } as profile'>
+    <style>
+        spec-buttons {
+            display: block;
+            min-width: 0;
+        }
+
+        spec-buttons .spec-buttons-rail {
+            display: grid;
+            gap: 14px;
+        }
+
+        spec-buttons button {
+            --spec-button-padding-inline: 18px;
+            --spec-button-dot-size: 15px;
+            --spec-button-dot-gap: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
+            min-width: 0;
+            padding: 14px var(--spec-button-padding-inline);
+            border: 1.5px solid var(--color-line);
+            border-radius: 14px;
+            background: var(--color-white);
+            color: var(--color-ink);
+            cursor: pointer;
+            font-family: var(--font-sans);
+            text-align: left;
+        }
+
+        spec-buttons button[data-demo-file="posts"] {
+            border-style: dashed;
+        }
+
+        spec-buttons button>span:first-child {
+            display: flex;
+            align-items: center;
+            padding-left: calc(var(--spec-button-dot-size) + var(--spec-button-dot-gap));
+            font-family: var(--font-condensed);
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -.015em;
+        }
+
+        spec-buttons button>span:first-child>span:first-child {
+            position: absolute;
+            inset-inline-start: var(--spec-button-padding-inline);
+            top: 50%;
+            width: var(--spec-button-dot-size);
+            height: var(--spec-button-dot-size);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            background: var(--color-ink);
+        }
+
+        spec-buttons button code {
+            padding-left: calc(var(--spec-button-dot-size) + var(--spec-button-dot-gap));
+            overflow: hidden;
+            color: var(--color-slate);
+            font: 400 14px var(--font-mono);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        spec-buttons button[data-color="purple"]>span:first-child>span:first-child {
+            background: var(--color-purple);
+        }
+
+        spec-buttons button[data-color="purple"] .spec-button-word,
+        spec-buttons button[data-color="purple"] code {
+            color: var(--color-purple-ink);
+        }
+
+        spec-buttons button[data-color="green"]>span:first-child>span:first-child {
+            background: var(--color-green);
+        }
+
+        spec-buttons button[data-color="green"] .spec-button-word,
+        spec-buttons button[data-color="green"] code {
+            color: var(--color-green-ink);
+        }
+
+        spec-buttons button[data-color="yellow"]>span:first-child>span:first-child {
+            background: var(--color-yellow);
+        }
+
+        spec-buttons button[data-color="yellow"] .spec-button-word,
+        spec-buttons button[data-color="yellow"] code {
+            color: var(--color-yellow-ink);
+        }
+
+        spec-buttons button[data-active="true"] {
+            border-color: var(--color-ink);
+            background: #eef0f6;
+        }
+
+        spec-buttons button[data-color="purple"][data-active="true"] {
+            border-color: var(--color-purple);
+            background: var(--color-purple-soft);
+        }
+
+        spec-buttons button[data-color="green"][data-active="true"] {
+            border-color: var(--color-green);
+            background: var(--color-green-soft);
+        }
+
+        spec-buttons button[data-color="yellow"][data-active="true"] {
+            border-color: #b7830d;
+            background: var(--color-yellow-soft);
+        }
+
+        @container hero style(--spec-buttons-layout: carousel) {
+            spec-buttons {
+                --spec-button-width: min(260px, calc(100vw - 76px));
+            }
+
+            spec-buttons .spec-buttons-rail {
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                margin-inline: calc(50% - 50vw);
+                padding: 2px calc((100vw - var(--spec-button-width)) / 2) 8px;
+                scroll-padding-inline: calc((100vw - var(--spec-button-width)) / 2);
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+            }
+
+            spec-buttons .spec-buttons-rail::-webkit-scrollbar {
+                display: none;
+            }
+
+            spec-buttons button {
+                --spec-button-padding-inline: 14px;
+                --spec-button-dot-size: 13.5px;
+                flex: 0 0 var(--spec-button-width);
+                scroll-snap-align: center;
+                scroll-snap-stop: always;
+                padding: 12px var(--spec-button-padding-inline);
+            }
+
+            spec-buttons button>span:first-child {
+                font-size: 19px;
+            }
+
+            spec-buttons button code {
+                font-size: 12px;
+            }
+        }
+    </style>
+    <div class='spec-buttons-rail' aria-label='Files jordandoe.com publishes'>
+        <button ht-each='file in ${ profile.files }' type='button' data-demo-file='${ file.id }'
+            data-color='${ file.color }'>
+            <span>
+                <span aria-hidden='true'></span>
+                <span ht-if='${ file.word }'>
+                    <span ht-apply class='spec-button-word'>${ file.word }</span><span ht-apply>${ file.suffix }</span>
+                </span>
+                <span ht-apply ht-if='!${ file.word }'>
+                    ${ file.label }
+                </span>
+            </span>
+            <code ht-apply>
+                ${ file.path }
+            </code>
+        </button>
+    </div>
+</spec-buttons>

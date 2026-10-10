@@ -1,0 +1,62 @@
+<header ht-with='${ page.hero } as hero' id='landing-hero' data-color-scheme='cream'>
+    <style class='component'>
+        header#landing-hero { background: var(--color-cream); color: var(--color-ink); }
+        header#landing-hero > content-container { display: flex; flex-direction: column; align-items: center; gap: 26px; padding-block: 48px 88px; text-align: center; }
+        header#landing-hero>content-container>.eyebrow { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; margin: 0; padding-inline: 14px; border: 1.5px dashed var(--color-ink); border-radius: 999px; background: color-mix(in srgb, var(--color-ink) 15%, transparent); color: var(--color-ink); font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .14em; text-decoration: none; text-transform: uppercase; }
+        header#landing-hero>content-container>.eyebrow svg { width: 12px; height: 12px; fill: currentColor; }
+        header#landing-hero>content-container>.eyebrow:hover { background: color-mix(in srgb, var(--color-ink) 22%, transparent); }
+        header#landing-hero rotating-text span:not(:first-child) { display: none; }
+        header#landing-hero h1 { max-width: 900px; margin: 0; line-height: .98; text-wrap: balance; }
+        header#landing-hero h1:has(rotating-text) {
+            /* Safari only repaints the new intrinsic width of a changing
+               headline. Keep a stable, opaque paint area for the typed text. */
+            width: 100%;
+            max-width: 100%;
+            min-height: 1lh;
+            background: inherit;
+        }
+        header#landing-hero h1 rotating-text span { color: var(--spec-color); }
+        header#landing-hero > content-container > p { max-width: 640px; margin: 0; color: #3d4453; line-height: 1.6; text-wrap: pretty; }
+
+        header#landing-hero .profile-stage { container: hero / normal; --spec-request-layout: vertical; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; justify-content: center; gap: 32px 40px; width: 100%; padding-top: 22px; text-align: initial; }
+        header#landing-hero .profile-stage http-request,
+        header#landing-hero .profile-stage social-widget { width: 100%; min-width: 0; margin: 0; }
+        header#landing-hero .profile-stage social-widget { min-height: 550px; }
+
+        @media (max-width: 1000px) {
+            header#landing-hero .profile-stage { --spec-request-layout: horizontal; grid-template-columns: minmax(0, 460px); gap: 16px; max-width: 780px; margin-inline: auto; }
+            header#landing-hero .profile-stage social-widget { justify-self: center; }
+        }
+
+        @media (max-width: 720px) {
+            header#landing-hero > content-container { padding-block: 32px 56px; }
+        }
+
+        @media screen and (max-width: 576px) {
+            header#landing-hero h1:has(rotating-text) { min-height: 2lh; }
+        }
+    </style>
+    <nav ht-include='fragments/nav'></nav>
+    <content-container>
+        <a ht-apply class='eyebrow' href='${ hero.eyebrow.href }'>
+            <span ht-apply>
+                ${ hero.eyebrow.label }
+            </span>
+            <svg ht-include='fragments/icons/up-right-from-square-solid-full.svg' aria-hidden='true'></svg>
+        </a>
+        <h1 ht-apply>
+            ${ hero.title }
+            <rotating-text ht-if='${ hero.phrases }'>
+                <span ht-each='phrase in ${ hero.phrases }'>${ phrase }</span>.
+            </rotating-text>
+        </h1>
+        <p ht-apply>
+            ${ hero.description }
+        </p>
+        <section class='profile-stage'>
+            <http-request ht-include='fragments/http-request' ht-with='${ hero.http } as http'></http-request>
+            <spec-request ht-include='fragments/spec-request'></spec-request>
+            <social-widget ht-include='fragments/social-widget'></social-widget>
+        </section>
+    </content-container>
+</header>

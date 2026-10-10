@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta ht-include='fragments/head'>
+        <meta name='layout:name' content='screenshot'>
+        <style ht-pipe='from "style.component" as css' id='components'></style>
+        <style id='layout'>
+            html, body {
+                min-height: 100%;
+                margin: 0;
+                background: transparent;
+            }
+
+            body {
+                display: grid;
+                min-height: 100vh;
+                box-sizing: border-box;
+                padding: 2rem;
+                place-items: center;
+            }
+
+            :root social-widget {
+                width: 480px;
+                height: 576px;
+            }
+        </style>
+        <script src='/js/social-widget.js' defer></script>
+    </head>
+    <body>
+        <social-widget ht-include='fragments/social-widget' active-tab='following'></social-widget>
+    </body>
+</html>

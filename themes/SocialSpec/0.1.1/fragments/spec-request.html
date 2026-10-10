@@ -1,0 +1,56 @@
+<spec-request aria-hidden='true'>
+    <style>
+        spec-request {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        spec-request>span {
+            padding: 6px 10px;
+            border: 1px solid var(--color-line);
+            border-radius: 8px;
+            background: var(--color-white);
+            color: var(--color-ink);
+            font: 500 13px var(--font-mono);
+            white-space: nowrap;
+        }
+
+        spec-request>span:last-child {
+            border-color: #b9e2c8;
+            background: #e3f5ea;
+            color: #1e6b3a;
+        }
+
+        spec-request svg {
+            width: 42px;
+            height: 42px;
+            flex: none;
+            transform: scaleX(-1);
+            color: var(--color-ink);
+            fill: currentColor;
+        }
+
+        @container hero style(--spec-request-layout: horizontal) {
+            spec-request {
+                flex-direction: row;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            spec-request svg {
+                width: 28px;
+                height: 28px;
+                transform: rotate(-90deg);
+            }
+        }
+    </style>
+    <span>
+        HTTP GET
+    </span>
+    <svg ht-include='fragments/icons/right-left-large-regular-full.svg'></svg>
+    <span>
+        200 OK
+    </span>
+</spec-request>

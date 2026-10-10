@@ -1,0 +1,339 @@
+<nav aria-label='Primary navigation'>
+    <style class='component'>
+        header nav {
+            display: grid;
+            grid-template-areas:
+            "portfolio portfolio portfolio portfolio portfolio"
+            ". brand links toggle .";
+            grid-template-columns: var(--container-gutter) auto minmax(0, 1fr) auto var(--container-gutter);
+            align-items: center;
+            width: 100%;
+        }
+
+        header nav menu {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        header nav menu li {
+            list-style: none;
+        }
+
+        header nav>menu.portfolio {
+            grid-area: portfolio;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px 24px;
+            padding: 8px var(--container-gutter);
+            background: var(--color-ink);
+        }
+
+        header nav menu.portfolio a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 32px;
+            padding: 0 10px;
+            color: #d3d7e0;
+            text-decoration: none;
+        }
+
+        header nav menu.portfolio a:hover {
+            color: var(--color-white);
+        }
+
+        header nav menu.portfolio a[href="/blog"] {
+            color: #b7bdcb;
+        }
+
+        header nav menu.portfolio a[aria-current] {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            margin-left: -10px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: var(--color-white);
+            color: var(--color-ink);
+            font-family: "Fira Mono", ui-monospace, monospace;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        header nav menu.portfolio>li>menu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 6px;
+            font-family: "Fira Mono", ui-monospace, monospace;
+            font-size: 12px;
+        }
+
+        header nav menu.portfolio a>span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #b98ad6;
+        }
+
+        header nav menu.portfolio a>span[data-color="green"] {
+            background: #6ccb7a;
+        }
+
+        header nav menu.portfolio a>span[data-color="yellow"] {
+            background: #f5d27a;
+        }
+
+        header nav>a,
+        header nav dialog>header>a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+
+        header nav>a {
+            grid-area: brand;
+            margin-block: 20px;
+        }
+
+        header nav>menu.main {
+            grid-area: links;
+            display: flex;
+            flex-wrap: wrap;
+            justify-self: end;
+            align-items: center;
+            gap: 6px 26px;
+            font-weight: 500;
+        }
+
+        header nav menu.main a {
+            color: var(--color-body);
+            text-decoration: none;
+        }
+
+        header nav menu.main li[data-cta="true"] a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 16px;
+            border: 1.5px solid var(--color-ink);
+            border-radius: 10px;
+            background: var(--color-ink);
+            color: var(--color-white);
+        }
+
+        header nav menu.main li[data-cta="true"] a:hover {
+            color: var(--color-white);
+        }
+
+        header nav[data-color-scheme="dark"] menu.main a {
+            color: color-mix(in srgb, var(--color-cream) 75%, transparent);
+        }
+
+        header nav[data-color-scheme="dark"] menu.main a:hover {
+            color: var(--color-white);
+        }
+
+        header nav[data-color-scheme="dark"] menu.main li[data-cta="true"] a {
+            border-color: var(--color-cream);
+            background: var(--color-cream);
+            color: var(--color-ink);
+        }
+
+        header nav[data-color-scheme="dark"] menu.main li[data-cta="true"] a:hover {
+            background: var(--color-white);
+            border-color: var(--color-white);
+            color: var(--color-ink);
+        }
+
+        header nav button:not(dialog button),
+        header nav dialog button {
+            border: 0;
+            cursor: pointer;
+        }
+
+        header nav>button {
+            grid-area: toggle;
+            justify-self: end;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            background: transparent;
+            color: var(--color-ink);
+        }
+
+        header nav[data-color-scheme="dark"]>button {
+            color: var(--color-cream);
+        }
+
+        header nav button svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        header nav dialog {
+            position: fixed;
+            inset: 0;
+            box-sizing: border-box;
+            width: 100vw;
+            height: 100dvh;
+            min-height: 100dvh;
+            max-height: none;
+            margin: 0;
+            padding: max(var(--gutter-3x), env(safe-area-inset-top, 0px)) var(--container-gutter) max(var(--gutter-3x), env(safe-area-inset-bottom, 0px));
+            border: 0;
+            background: var(--color-cream);
+            color: var(--color-ink);
+            overflow-y: auto;
+        }
+
+        header nav dialog:popover-open {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header nav dialog::backdrop {
+            background: var(--color-cream);
+        }
+
+        header nav[data-color-scheme="dark"] dialog,
+        header nav[data-color-scheme="dark"] dialog::backdrop {
+            background: var(--color-ink);
+            color: var(--color-white);
+        }
+
+        header nav dialog>header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--gutter-2x);
+        }
+
+        header nav dialog>header>button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--color-ink);
+        }
+
+        header nav[data-color-scheme="dark"] dialog>header>button {
+            color: var(--color-cream);
+        }
+
+        header nav dialog>menu.main {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            margin-block: auto;
+        }
+
+        header nav dialog menu.main a {
+            display: block;
+            padding: var(--gutter-2x) 0;
+            border-bottom: 1px solid var(--color-line);
+            color: var(--color-ink);
+            font-family: "Fira Sans Condensed", system-ui, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        header nav[data-color-scheme="dark"] dialog menu.main a {
+            border-color: color-mix(in srgb, var(--color-cream) 18%, transparent);
+            color: var(--color-cream);
+        }
+
+        header nav dialog menu.main li[data-cta="true"] a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding-inline: var(--gutter-2x);
+            border-bottom: 0;
+            border-radius: 10px;
+            background: var(--color-ink);
+            color: var(--color-white);
+        }
+
+        header nav[data-color-scheme="dark"] dialog menu.main li[data-cta="true"] a {
+            background: var(--color-cream);
+            color: var(--color-ink);
+        }
+
+        @media (max-width: 799px) {
+            header nav {
+                padding-block: max(var(--gutter-2x), env(safe-area-inset-top, 0px)) max(var(--gutter-2x), env(safe-area-inset-bottom, 0px));
+            }
+
+            header nav>a {
+                margin-block: 0;
+            }
+
+            header nav>menu.main {
+                display: none;
+            }
+
+            header nav>button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            header nav dialog {
+                padding: max(var(--gutter-2x), env(safe-area-inset-top, 0px)) var(--container-gutter) max(var(--gutter-2x), env(safe-area-inset-bottom, 0px));
+            }
+        }
+    </style>
+    <!-- <menu ht-include='fragments/portfolio-banner'></menu> -->
+    <a ht-apply href='/' aria-label='${ site.title } Home'>
+        <logo-horizontal ht-include='fragments/logo-horizontal' ht-with='${ site.brand, theme.data.brand.id } as brand'></logo-horizontal>
+    </a>
+    <menu class='main'>
+        <li ht-each='link in ${ data.nav.main }' data-cta='${ link.cta, false }'>
+            <a ht-apply href='${ link.href }'>
+                <svg ht-include='fragments/icons/github.svg' ht-if='${ link.icon } == "github"' width='24' height='24' aria-hidden='true'></svg>
+                <span ht-apply>
+                    ${ link.label }
+                </span>
+            </a>
+        </li>
+    </menu>
+    <button type='button' class='hidden-md hidden-lg' popovertarget='mobile-nav' popovertargetaction='toggle' aria-label='Open navigation menu'>
+        <svg ht-include='fragments/icons/bars-solid-full.svg' width='22' height='22' aria-hidden='true'></svg>
+    </button>
+    <dialog ht-apply id='mobile-nav' popover='auto' aria-label='${ site.title } Home navigation'>
+        <header>
+            <a ht-apply href='/' aria-label='${ site.title } Home'>
+                <logo-horizontal ht-include='fragments/logo-horizontal' ht-with='${ site.brand, theme.data.brand.id } as brand'></logo-horizontal>
+            </a>
+            <button type='button' popovertarget='mobile-nav' popovertargetaction='hide' aria-label='Close navigation menu' autofocus>
+                <svg ht-include='fragments/icons/xmark-solid-full.svg' width='22' height='22' aria-hidden='true'></svg>
+            </button>
+        </header>
+        <menu class='main'>
+            <li ht-each='link in ${ data.nav.mobile }' data-cta='${ link.cta, false }'>
+                <a ht-apply href='${ link.href }'>
+                    <svg ht-include='fragments/icons/github.svg' ht-if='${ link.icon } == "github"' width='24' height='24' aria-hidden='true'></svg>
+                    <span ht-apply>
+                        ${ link.label }
+                    </span>
+                </a>
+            </li>
+        </menu>
+    </dialog>
+</nav>

@@ -1,0 +1,70 @@
+:root {
+  --color-cream: #fdfbf6;
+  --color-white: #ffffff;
+  --color-smoke: rgb(156, 165, 186);
+  --color-ink: #171c2b;
+  --color-body: #3d4453;
+  --color-slate: #5a6275;
+  --color-line: #e2ddd1;
+  --color-line-subtle: #eae5da;
+  --color-purple: #7a3e9d;
+  --color-purple-ink: #5c2e76;
+  --color-purple-soft: #f1e8f5;
+  --color-green: #2f7d3a;
+  --color-green-ink: #235e2c;
+  --color-green-soft: #e6f0e7;
+  --color-yellow: #e8b12a;
+  --color-yellow-ink: #685013;
+  --color-yellow-soft: #fcf3dd;
+  --color-orange-ink: #8a3d0b;
+  --color-orange-soft: #fcebdd;
+  --spec-color: var(--color-purple);
+  --spec-color-ink: var(--color-purple-ink);
+  --spec-color-bg: var(--color-purple-soft);
+}
+
+body { background: var(--color-cream); color: var(--color-ink); }
+a { color: var(--color-ink); }
+a:hover { color: var(--color-body); }
+.eyebrow { color: var(--color-slate); }
+p :where(a, a:hover) { color: inherit; }
+
+[data-color-scheme="light"],
+[data-color-scheme="snow"] {
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+
+[data-color-scheme="cream"] {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+[data-color-scheme="smoke"] {
+  background: var(--color-smoke);
+  color: var(--color-ink);
+}
+
+[data-color-scheme="dark"] {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+[data-color-scheme="dark"] a:hover { color: var(--color-white); }
+
+
+[data-color-scheme="spec"] {
+  background: var(--spec-color-bg);
+  color: var(--color-ink);
+}
+
+[data-brand="contactspec"] {
+  --spec-color: var(--color-green);
+  --spec-color-ink: var(--color-green-ink);
+  --spec-color-bg: var(--color-green-soft);
+}
+
+[data-brand="aboutspec"] {
+  --spec-color: var(--color-yellow);
+  --spec-color-ink: var(--color-yellow-ink);
+  --spec-color-bg: var(--color-yellow-soft);
+}

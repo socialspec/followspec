@@ -1,0 +1,89 @@
+<http-request ht-with='${ http } as http'>
+    <style class='component'>
+        http-request {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #171c2b;
+            color: #fff;
+            text-align: left;
+        }
+
+        http-request>header {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 10px 14px;
+            padding: var(--gutter-3x);
+            overflow-x: auto;
+            border-bottom: 1px solid #2c3345;
+        }
+
+        http-request>header b {
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--spec-color);
+            font: 500 var(--font-size-mono-label)/1 var(--font-mono);
+        }
+
+        http-request>header code {
+            min-width: max-content;
+            color: #fff;
+            font: 400 var(--font-size-mono)/1.4 var(--font-mono);
+            white-space: nowrap;
+        }
+
+        http-request .response {
+            display: grid;
+            gap: 14px;
+            padding: var(--gutter-3x);
+            overflow-x: auto;
+        }
+
+        http-request .response > code,
+        http-request .response > pre {
+            min-width: max-content;
+            margin: 0;
+            font: 400 var(--font-size-mono)/1.4 var(--font-mono);
+        }
+
+        http-request .response > .status {
+            color: #8fe0b9;
+        }
+
+        http-request .response > .headers {
+            color: #b7bdcb;
+        }
+
+        http-request .response > .headers span { display: block; }
+
+        http-request .response > pre {
+            color: #e8eaf0;
+        }
+    </style>
+    <header>
+        <b ht-apply>
+            ${ http.request.method, "GET" }
+        </b>
+        <code ht-apply>
+            ${ http.request.url, "GET" }
+        </code>
+    </header>
+    <section class='response'>
+        <code class='status'>
+            <span ht-apply ht-if='${ http.response.version }'>
+                ${ http.response.version }
+            </span>
+            <span ht-apply>
+                ${ http.response.status }
+            </span>
+        </code>
+        <code class='headers'>
+            <span ht-each='header in ${ http.response.headers }'>
+                ${ header.name }: ${ header.value }
+            </span>
+        </code>
+        <pre ht-apply>${ http.response.body }</pre>
+    </section>
+</http-request>

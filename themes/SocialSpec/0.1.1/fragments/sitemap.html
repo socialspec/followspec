@@ -1,0 +1,48 @@
+<sitemap ht-with='${ sitemap } as sitemap'>
+    <style class='component'>
+        sitemap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            padding: var(--gutter-3x);
+            border-radius: 1.75rem;
+            background: var(--color-ink);
+            text-align: left;
+        }
+
+        sitemap>span {
+            color: #9ca5ba;
+            font: 500 var(--font-size-mono-label)/1 var(--font-mono);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        sitemap ol {
+            display: grid;
+            gap: .75rem;
+            padding: var(--gutter-3x) var(--gutter-3x) 0;
+            margin: 0 calc(var(--gutter-3x) * -1);
+            border-top: 1px solid #2c3345;
+            list-style: none;
+        }
+
+        sitemap li {
+            color: #c1c8d8;
+            font: 400 var(--font-size-mono)/1.4 var(--font-mono);
+            overflow-wrap: anywhere;
+        }
+
+        sitemap li:last-child {
+            color: #8fe0b9;
+            font-weight: 600;
+        }
+    </style>
+    <span>
+        Sitemap
+    </span>
+    <ol>
+        <li ht-each='path in ${ sitemap.paths }' ht-apply>
+            ${ path }
+        </li>
+    </ol>
+</sitemap>

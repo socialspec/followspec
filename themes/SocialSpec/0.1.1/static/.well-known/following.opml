@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>SocialSpec.org Follows</title>
+        <ownerEmail>info@socialspec.org</ownerEmail>
+        <dateCreated>Fri, 09 Oct 2026 12:00:00 +0700</dateCreated>
+        <dateModified>Fri, 09 Oct 2026 12:00:00 +0700</dateModified>
+        <docs>http://www.opml.org/spec2</docs>
+    </head>
+    <body>
+        <outline text="Caleb Hailey" htmlUrl="https://calebhailey.com" xmlUrl="https://calebhailey.com/feeds/main.xml"></outline>
+        <outline text="Herd Works" htmlUrl="https://herd.works" xmlUrl="https://herd.works/blog/index.xml"></outline>
+        <outline text="HyperTexting.com" htmlUrl="https://hypertexting.com" xmlUrl="https://hypertexting.com/atom.xml"></outline>
+        <outline text="HyperTexting.community" htmlUrl="https://hypertexting.community" xmlUrl="https://hypertexting.community/posts.rss"></outline>
+        <outline text="HyperTexting.dev" htmlUrl="https://hypertexting.dev" xmlUrl="https://hypertexting.dev/feeds/main.xml"></outline>
+    </body>
+</opml>

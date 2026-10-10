@@ -1,0 +1,20 @@
+<!--Global metadata-->
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title ht-apply ht-if='!${ page.title }'>${ site.title }</title>
+<title ht-apply ht-if='${ page.title }'>${ site.title } | ${ page.title }</title>
+<meta ht-apply name='description' content='${ page.description }'>
+<link ht-each='link in ${ site.links }' ht-attrs='${ link }' href='${ link.href }' />
+<link ht-apply rel='stylesheet' href='/css/reset.css?v=${ site.version, build.id, 1 }'>
+<link ht-apply rel='stylesheet' href='/css/typography.css?v=${ site.version, build.id, 1 }'>
+<link ht-apply rel='stylesheet' href='/css/colors.css?v=${ site.version, build.id, 1 }'>
+<link ht-apply rel='stylesheet' href='/css/grid.css?v=${ site.version, build.id, 1 }'>
+<link ht-apply rel='stylesheet' href='/css/utilities.css?v=${ site.version, build.id, 1 }'>
+
+<!-- OpenGraph Metadata -->
+<meta property='og:type' content='website'>
+<meta ht-apply property='og:site_name' content='${ site.title }'>
+<meta ht-apply property='og:title' content='${ page.title, site.title }'>
+<meta ht-apply property='og:description' content='${ page.description, site.description }'>
+<meta ht-apply property='og:image' content='${ page.cover, site.cover, "/img/cover.png" }'>
+<meta ht-apply property='og:image:alt' content='${ site.title }'>

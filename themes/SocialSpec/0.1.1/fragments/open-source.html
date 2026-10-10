@@ -1,0 +1,111 @@
+<section ht-with='${ data.cta.oss } as cta' class='oss'>
+    <script src='/js/github-stars.js'></script>
+    <style class='component'>
+        section.oss > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            width: var(--container-width);
+            margin: 0 auto;
+            padding: 40px 48px;
+            border-radius: 18px;
+            background: var(--color-ink);
+            color: #fff;
+        }
+
+        section.oss > div > div:first-child h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        section.oss > div > div:first-child h2 svg {
+            width: .8em;
+            height: .8em;
+            flex: none;
+            fill: currentColor;
+        }
+
+        section.oss > div > div {
+            display: grid;
+            gap: 12px;
+            max-width: 670px;
+        }
+
+        section.oss > div p {
+            line-height: 1.6;
+        }
+
+        section.oss > div > div:last-child {
+            display: grid;
+            flex: none;
+            gap: var(--gutter-2x);
+        }
+
+        section.oss > div > div:last-child > a.button[data-primary='true'] {
+            flex: none;
+            background: #fff;
+            color: var(--color-ink);
+        }
+
+        section.oss > div > div:last-child > a.button:not([data-primary='true']) {
+            border: 1.5px solid #fff;
+            color: #fff;
+        }
+
+        section.oss > div a.button svg {
+            width: 27px;
+            height: 27px;
+            fill: currentColor;
+        }
+
+        section.oss > div a.button {
+            padding: var(--gutter-2x) var(--gutter-5x);
+            gap: var(--gutter-1x);
+        }
+
+        section.oss > div a.button[data-github-stars] svg {
+            fill: var(--color-yellow);
+        }
+
+        @media (max-width: 720px) {
+            section.oss > div {
+                display: grid;
+                width: auto;
+                margin-inline: var(--container-gutter);
+                padding: 30px 24px;
+            }
+
+            section.oss > div a.button {
+                width: 100%;
+            }
+        }
+    </style>
+    <div data-color-scheme='dark'>
+        <div>
+            <h2>
+                <svg ht-include='fragments/icons/github.svg' aria-hidden='true'></svg>
+                <span ht-apply>
+                    ${ cta.title }
+                </span>
+            </h2>
+            <p ht-apply>
+                ${ markdown(cta.description, "") }
+            </p>
+        </div>
+        <div>
+            <a ht-each='link in ${ cta.links }' ht-apply class='button' data-primary='${ link.primary, false }' href='${ link.href }'>
+                <svg ht-include='fragments/icons/message-dots-regular-full.svg' aria-hidden='true'></svg>
+                <span ht-apply>
+                    ${ link.label }
+                </span>
+            </a>
+            <a ht-if='${ cta.github }' ht-with='${ cta.github } as github' ht-apply class='button' data-github-stars href='${ github.href }'>
+                <svg ht-include='fragments/icons/star-solid-full.svg' aria-hidden='true'></svg>
+                <github-stars ht-apply repo='${ github.repo }' aria-live='polite'>${ github.stars }</github-stars>
+            </a>
+        </div>
+    </div>
+</section>
